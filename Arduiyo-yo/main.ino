@@ -26,6 +26,20 @@ This output format is used as an output.
 #define OUTPUT_READABLE_ACCELGYRO
 //#define OUTPUT_BINARY_ACCELGYRO
 
+// Acceleration offsets
+#define ACC_X_OFFSET -1420
+#define ACC_Y_OFFSET -280
+#define ACC_Z_OFFSET -830
+#define ACC_THRESHOLD 1000
+
+
+// Angular offsets
+#define ANG_X_OFFSET 10
+#define ANG_Y_OFFSET 10
+#define ANG_Z_OFFSET -10
+#define ANG_THRESHOLD 1000
+
+
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
 bool blinkState;
@@ -54,12 +68,12 @@ void setup() {
 
   /* Use the code below to change accel/gyro offset values. Use MPU6050_Zero to obtain the recommended offsets */ 
   Serial.println("Updating internal sensor offsets...\n");
-  mpu.setXAccelOffset(0); //Set your accelerometer offset for axis X
-  mpu.setYAccelOffset(0); //Set your accelerometer offset for axis Y
-  mpu.setZAccelOffset(0); //Set your accelerometer offset for axis Z
-  mpu.setXGyroOffset(0);  //Set your gyro offset for axis X
-  mpu.setYGyroOffset(0);  //Set your gyro offset for axis Y
-  mpu.setZGyroOffset(0);  //Set your gyro offset for axis Z
+  mpu.setXAccelOffset(ACC_X_OFFSET); //Set your accelerometer offset for axis X
+  mpu.setYAccelOffset(ACC_Y_OFFSET); //Set your accelerometer offset for axis Y
+  mpu.setZAccelOffset(ACC_Z_OFFSET); //Set your accelerometer offset for axis Z
+  mpu.setXGyroOffset(ANG_X_OFFSET);  //Set your gyro offset for axis X
+  mpu.setYGyroOffset(ANG_Y_OFFSET);  //Set your gyro offset for axis Y
+  mpu.setZGyroOffset(ANG_Z_OFFSET);  //Set your gyro offset for axis Z
   /*Print the defined offsets*/
   Serial.print("\t");
   Serial.print(mpu.getXAccelOffset());
